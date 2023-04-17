@@ -7,25 +7,134 @@
     tools:context=".ResultadoBuscadorActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewNombreCarta"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_weight="10"/>
+        android:orientation="vertical"
+        android:layout_weight="14">
+
+        <TextView
+            android:id="@+id/textViewNombreCarta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:id="@+id/textViewTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tipo"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/black"
+            android:textSize="17sp"/>
+
+    </LinearLayout>
+
+
 
     <ImageView
         android:id="@+id/imageViewCarta"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:srcCompat="@tools:sample/avatars"
-        android:layout_weight="90"
-        android:layout_margin="20dp"
+        android:layout_weight="40"
+
         android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewSet"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                tools:srcCompat="@drawable/defaultset"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/textViewNameSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:layout_toRightOf="@+id/imageViewSet"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"/>
+
+            <ScrollView
+                android:id="@+id/scrollviewText"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_below="@id/textViewNameSet"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:background="@drawable/backgroundcard">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textViewTextCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="texto"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/buttonGatherer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gatherer"
+                android:layout_below="@+id/scrollviewText"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:id="@+id/buttonCardmarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CardMarket"
+                android:layout_below="@+id/scrollviewText"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/buttonAddCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Añadir colección"
+                android:layout_below="@+id/buttonGatherer"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:id="@+id/buttonAddDeck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Añadir mazo"
+                android:layout_below="@+id/buttonGatherer"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"/>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

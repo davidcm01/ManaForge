@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "454542847577",
+    "project_id": "manaforge",
+    "storage_bucket": "manaforge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454542847577:android:37e6f8ea170e77fc760b48",
+        "android_client_info": {
+          "package_name": "com.example.manaforge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454542847577-pdnpq0s9dvlqc2hlckhv6tekr3niscdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.manaforge",
+            "certificate_hash": "33ad6f5718c491d9ec8a02850667891dcf3c20fe"
+          }
+        },
+        {
+          "client_id": "454542847577-cnhq7dpbs18lj0vppvsf9ureqogn4q8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeJ47IR4HofCk8M4_CMLzWfhjkFfCDEr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454542847577-cnhq7dpbs18lj0vppvsf9ureqogn4q8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
