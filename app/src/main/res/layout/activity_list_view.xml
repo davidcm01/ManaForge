@@ -6,8 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ListViewActivity">
 
-    <ListView
+
+    <GridView
         android:id="@+id/listaCartas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:columnWidth="100dp"
+        android:verticalSpacing="15dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"/>
+
+    <!--  <ListView
+          android:id="@+id/listaCartas"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+          -->
 </LinearLayout>

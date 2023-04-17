@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.manaforge.model.Card
 import org.w3c.dom.Text
@@ -30,7 +31,7 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
             nombreCarta.text = carta.name
         }
 
-        loadImage(carta.image_uris.normal)
+        loadImage(carta.image_uris.large)
     }
 
     fun loadImage(urlImage:String){
@@ -46,6 +47,7 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
         Glide.with(applicationContext)
             .load(urlImage)
             .apply(options)
+            .apply(RequestOptions.bitmapTransform(RoundedCorners(37)))
             .into(imageView)
     }
 }

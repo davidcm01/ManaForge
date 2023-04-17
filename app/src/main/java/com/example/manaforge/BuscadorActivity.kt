@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Toast
 import com.example.manaforge.utilidades.Constants
 import com.example.testretrofit.model.card.CardList
@@ -27,9 +28,23 @@ class BuscadorActivity : AppCompatActivity() {
         val buttonBuscar = findViewById<Button>(R.id.buttonBuscar)
         val editTextNombreCarta = findViewById<EditText>(R.id.editTextTextNombreCarta)
 
+        val rbOptionENG = findViewById<RadioButton>(R.id.radioButtonENG)
+        rbOptionENG.setChecked(true)
+        val rbOptionSPA = findViewById<RadioButton>(R.id.radioButtonSPA)
+
+
         buttonBuscar.setOnClickListener {
+            //se setea la url dependiendo del idioma seleccionado
+
+            var url = ""
+            if (rbOptionENG.isChecked){
+                url = Constants.URL_BASE_GET_CARD_ENG
+            }else if (rbOptionSPA.isChecked){
+                url = Constants.URL_BASE_GET_CARD_ESP
+            }
+
             if (!editTextNombreCarta.text.isNullOrEmpty()){
-                var url = Constants.URL_BASE_GET_CARD_ENG + formatNameCardUrl(editTextNombreCarta.text.toString())
+                var url = url + formatNameCardUrl(editTextNombreCarta.text.toString())
                 try {
                     var cardList = getCard(url)
 

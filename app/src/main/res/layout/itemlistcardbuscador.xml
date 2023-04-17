@@ -2,30 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/mainContainer">
 
     <RelativeLayout
         android:id="@+id/relativeItem"
-        android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_width="wrap_content"
+        android:layout_height="210dp"
+        android:background="@drawable/backgroundcard">
 
         <ImageView
             android:id="@+id/imageViewCard"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             tools:srcCompat="@tools:sample/avatars"
             android:adjustViewBounds="true"
-            android:layout_margin="15dp"
-            android:layout_alignParentLeft="true"/>
+            android:layout_margin="10dp"
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imageViewCard"
-            android:layout_centerVertical="true">
+            android:background="@drawable/backgroundimagecard"/>
 
             <TextView
                 android:id="@+id/textViewName"
@@ -34,19 +30,10 @@
                 android:layout_marginLeft="20dp"
                 android:text="Nombre"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Set"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_below="@+id/textViewName"/>
-        </RelativeLayout>
-
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imageViewCard"/>
 
     </RelativeLayout>
 </LinearLayout>

@@ -9,13 +9,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Transformations
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.manaforge.model.Card
 import okhttp3.OkHttpClient
 
-class CardArrayAdapter(context: Context,viewToPaint:Int, private val cartas: List<Card>)
+class CardArrayAdapter(context: Context,viewToPaint:Int, private val cartas: ArrayList<Card>)
     :ArrayAdapter <Card>(context,viewToPaint,cartas){
     private val client = OkHttpClient()
 
@@ -29,7 +31,7 @@ class CardArrayAdapter(context: Context,viewToPaint:Int, private val cartas: Lis
 
         val imageview = currentListItem.findViewById<ImageView>(R.id.imageViewCard)
         val textViewName = currentListItem.findViewById<TextView>(R.id.textViewName)
-        val textViewSet = currentListItem.findViewById<TextView>(R.id.textViewSet)
+        //val textViewSet = currentListItem.findViewById<TextView>(R.id.textViewSet)
             if (!cartas.get(position).printed_name.isNullOrEmpty()){
                 textViewName.text = cartas.get(position).printed_name
             }else{
@@ -37,7 +39,7 @@ class CardArrayAdapter(context: Context,viewToPaint:Int, private val cartas: Lis
             }
 
 
-        textViewSet.text = cartas.get(position).set_name
+            //textViewSet.text = cartas.get(position).set_name
 
 
 
@@ -49,8 +51,9 @@ class CardArrayAdapter(context: Context,viewToPaint:Int, private val cartas: Lis
 
 
     Glide.with(context)
-        .load(cartas.get(position).image_uris.normal)
+        .load(cartas.get(position).image_uris.large)
         .apply(options)
+        .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
         .into(imageview)
     Log.i("[CardArrayAdapter]" ,"***** Pintando la carta: " + cartas.get(position).printed_name)
 
