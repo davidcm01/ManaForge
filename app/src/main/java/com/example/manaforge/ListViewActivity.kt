@@ -15,7 +15,7 @@ class ListViewActivity : AppCompatActivity() {
         val cardListView= findViewById<ListView>(R.id.listaCartas)
         val intent = intent
         val cartas = intent.getSerializableExtra("cartas") as CardList
-        vars cardArrayAdapter= CardArrayAdapter(applicationContext,R.layout.itemlistcardbuscador,cartas.data)
+        var cardArrayAdapter= CardArrayAdapter(applicationContext,R.layout.itemlistcardbuscador,cartas.data)
         cardListView.adapter = cardArrayAdapter
 
         cardListView.setOnItemClickListener { adapterView, view, position, id ->
