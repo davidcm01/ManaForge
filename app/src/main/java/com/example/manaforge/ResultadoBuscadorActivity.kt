@@ -27,15 +27,10 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado_buscador)
 
-        //politicas para poder acceder a internet
-        val policy = StrictMode.ThreadPolicy.Builder()
-            .permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-
         val intent = intent
         val carta = intent.getSerializableExtra("carta") as Card
 
-            val cardSet = getCardSet(carta.set_uri)
+        //val cardSet = getCardSet(carta.set_uri)
 
 
 
@@ -84,7 +79,7 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
         }
 
         loadCardImage(carta.image_uris.large)
-        loadCardSetImage(cardSet.icon_svg_uri)
+        //loadCardSetImage(cardSet.icon_svg_uri)
     }
 
     fun loadCardImage(urlImage:String){
