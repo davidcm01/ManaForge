@@ -26,7 +26,7 @@
         android:inputType="text"
         android:text=""
         android:hint="Nombre de la carta"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp" />
 
     <Button
         android:id="@+id/buttonBuscar"

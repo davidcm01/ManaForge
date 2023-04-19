@@ -14,6 +14,7 @@ import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
+import kotlin.concurrent.thread
 
 class BuscadorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,9 @@ class BuscadorActivity : AppCompatActivity() {
 
 
         buttonBuscar.setOnClickListener {
+            if(editTextNombreCarta.text.trim().length>2){
+
+
             //se setea la url dependiendo del idioma seleccionado
 
             var url = ""
@@ -46,10 +50,10 @@ class BuscadorActivity : AppCompatActivity() {
             if (!editTextNombreCarta.text.isNullOrEmpty()){
                 var url = url + formatNameCardUrl(editTextNombreCarta.text.toString())
                 try {
+
                     var cardList = getCard(url)
 
                     if (cardList != null) {
-                        println(cardList.toString())
                         if(cardList.data.size>1){
                             var intentResultadoBuscadorLista = Intent(applicationContext,ListViewActivity::class.java)
                             intentResultadoBuscadorLista.putExtra("cartas" , cardList)
@@ -66,7 +70,9 @@ class BuscadorActivity : AppCompatActivity() {
                 }
 
             }
-
+            }else{
+                Toast.makeText(applicationContext,"Introduzca más carácteres",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -84,11 +90,11 @@ class BuscadorActivity : AppCompatActivity() {
             if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
             respuesta = response.body()?.string().toString()
-            println(respuesta)
+
         }
 
 
-        println(respuesta)
+
         return Gson().fromJson(respuesta, CardList::class.java)
 
     }
