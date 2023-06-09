@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.PictureDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,8 +18,12 @@ import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGParseException
 import com.example.manaforge.model.Card
 import com.example.manaforge.model.CardSet
+import com.example.manaforge.utilidades.Constants
+import com.example.manaforge.utilidades.Constants.Companion.URL_BASE_GET_CARD_MULTIVERSEID
+import com.example.testretrofit.model.card.CardList
 import com.google.gson.Gson
 import okhttp3.*
+import java.io.Console
 import java.io.IOException
 
 
@@ -27,8 +32,14 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado_buscador)
 
+        //politicas para poder acceder a internet
+        val policy = StrictMode.ThreadPolicy.Builder()
+            .permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
         val intent = intent
-        val carta = intent.getSerializableExtra("carta") as Card
+        val cartaid = intent.getSerializableExtra("carta") as String
+        val carta = getCard(Constants.URL_BASE_GET_CARD_ID+cartaid)
 
         val cardSet = getCardSet(carta.set_uri)
         loadCardSetImage(cardSet.icon_svg_uri)
@@ -78,8 +89,14 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
             }
 
         }
-
+    if(carta.image_uris!=null && carta.image_uris.large!=null){
         loadCardImage(carta.image_uris.large)
+    }else if (carta.image_uris!=null && carta.image_uris.normal!=null){
+        loadCardImage(carta.image_uris.normal)
+    }else{
+        Toast.makeText(applicationContext,"entra",Toast.LENGTH_SHORT).show()
+    }
+
     }
 
     fun loadCardImage(urlImage:String){
@@ -141,7 +158,6 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
             .url(url)
             .build()
 
-        Toast.makeText(applicationContext,"Buscando", Toast.LENGTH_SHORT).show()
         var respuesta = ""
 
         client.newCall(request).execute().use { response ->
@@ -155,8 +171,22 @@ class ResultadoBuscadorActivity : AppCompatActivity() {
 
     }
 
+    fun getCard(url:String): Card {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(url)
+            .build()
 
+        var respuesta = ""
 
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
+            respuesta = response.body()?.string().toString()
+
+        }
+        return Gson().fromJson(respuesta, Card::class.java)
+
+    }
 
 }

@@ -54,5 +54,6 @@ data class Card(
     val artist_ids: List<String>,
     val illustration_id: String,
     val related_uris:RelatedUris,
-    val purchase_uris:PurchaseUris
+    val purchase_uris:PurchaseUris,
+    var prices:Prices
 ): Serializable

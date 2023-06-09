@@ -1,9 +1,11 @@
 package com.example.manaforge
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -35,6 +37,9 @@ class BuscadorActivity : AppCompatActivity() {
 
 
         buttonBuscar.setOnClickListener {
+
+
+
             if(editTextNombreCarta.text.trim().length>2){
 
 
@@ -53,16 +58,18 @@ class BuscadorActivity : AppCompatActivity() {
 
                     var cardList = getCard(url)
 
-                    if (cardList != null) {
-                        if(cardList.data.size>1){
-                            var intentResultadoBuscadorLista = Intent(applicationContext,ListViewActivity::class.java)
-                            intentResultadoBuscadorLista.putExtra("cartas" , cardList)
-                            startActivity(intentResultadoBuscadorLista)
-                        }else if (cardList.data.size == 1){
-                            var intentResultadoBuscador = Intent(applicationContext,ResultadoBuscadorActivity::class.java)
-                            intentResultadoBuscador.putExtra("carta" , cardList.data.get(0))
-                            startActivity(intentResultadoBuscador)
-                        }
+                    if (cardList != null && cardList.data.get(0)!=null && cardList.data.get(0).image_uris!=null) {
+                                if(cardList.data.size>1){
+                                    var intentResultadoBuscadorLista = Intent(applicationContext,ListViewActivity::class.java)
+                                    intentResultadoBuscadorLista.putExtra("cartas" , cardList)
+                                    startActivity(intentResultadoBuscadorLista)
+                                }else if (cardList.data.size == 1){
+                                    var intentResultadoBuscador = Intent(applicationContext,ResultadoBuscadorActivity::class.java)
+                                    intentResultadoBuscador.putExtra("carta" , cardList.data.get(0).id)
+                                    startActivity(intentResultadoBuscador)
+                                }
+                    }else{
+                        Toast.makeText(applicationContext,"Eror al buscar la carta",Toast.LENGTH_SHORT).show()
 
                     }
                 }catch (exceptio:IOException){
@@ -73,6 +80,7 @@ class BuscadorActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(applicationContext,"Introduzca más carácteres",Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 
@@ -93,9 +101,11 @@ class BuscadorActivity : AppCompatActivity() {
 
         }
 
+    Log.i(TAG, "Cartas encontradas: " + respuesta)
 
+        val cardList = Gson().fromJson(respuesta, CardList::class.java)
 
-        return Gson().fromJson(respuesta, CardList::class.java)
+        return cardList
 
     }
     fun formatNameCardUrl(nombre:String):String{

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
+import android.util.Log
 import android.widget.GridView
 import android.widget.ListView
 import android.widget.Toast
@@ -30,7 +31,7 @@ class ListViewActivity : AppCompatActivity() {
 
             var currentCard = cartasLimpias.get(position)
             var i = Intent(applicationContext,ResultadoBuscadorActivity::class.java)
-            i.putExtra("carta",currentCard)
+            i.putExtra("carta",currentCard.id)
             startActivity(i)
         }
     }

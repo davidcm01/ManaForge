@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         var buttonColeccion = findViewById<Button>(R.id.buttonColeccion)
         buttonColeccion.setOnClickListener {
-        //TODO llevar a vista de colleciones
+            var intentColecciones = Intent(applicationContext,ColeccionesActivity::class.java)
+            startActivity(intentColecciones)
 
         }
 
